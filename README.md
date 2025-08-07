@@ -112,7 +112,7 @@ If you're using multi-GPU setup (e.g., 2 GPUs):
 torchrun --nproc_per_node=2 main.py --task_target 'camelyon' --h5_path 'your_h5_directory'
 ```
 
-### TCGA Subtyping(BRCA/NSCLC)
+### TCGA Subtyping(BRCA/NSCLC) Windows for example
 BRCA:
 ```bash
 python main.py --task_target 'tcga' --subtyping_task 'brca' --h5_path 'your_h5_directory'
@@ -126,4 +126,17 @@ Evaluate a trained model using saved checkpoint:
 ```bash
 python test.py --checkpoint used_checkpoint/model_epochX.pth
 ```
+The extra Arguments:
+### ⚙️ Arguments
+
+| Argument               | Description                                       | Example                                  |
+|------------------------|---------------------------------------------------|------------------------------------------|
+| `--task_target`        | Task type: `camelyon` or `tcga`                   | `--task_target camelyon`                 |
+| `--subtyping_task`     | (For TCGA only) Subtype: `brca` or `nsclc`        | `--subtyping_task brca`                  |
+| `--fold`               | Fold index for cross-validation (1–5)             | `--fold 1`                                |
+| `--ratio`              | Attention filter ratio (range: 0.1 to 0.9)        | `--ratio 0.5`                             |
+| `--h5_path`            | Path to `.h5` feature files                       | `--h5_path ./h5_files/`                   |
+| `--pt_path`            | Path to `.pt` feature files                       | `--pt_path ./pt_files/`                   |
+| `--accumulation_steps` | Gradient accumulation steps to reduce GPU usage   | `--accumulation_steps 5`                 |
+
 
