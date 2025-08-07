@@ -79,7 +79,7 @@ To extract features from WSIs, we follow the pipeline proposed by the [CLAM fram
   - Extracted features are saved as `.pt` files
   - Saved under the folder: `./pt_files/`
     
-  > If you want to reproduce feature extraction, please refer to CLAM’s [wsi_feature_extraction.py](https://github.com/mahmoodlab/CLAM/blob/master/patch_extraction/wsi_feature_extraction.py) and modify the config CSVs accordingly.
+  > If you want to reproduce feature extraction, please refer to CLAM’s [wsi_feature_extraction.py](https://github.com/mahmoodlab/CLAM/blob/master/create_patches_fp.py) and modify the config CSVs accordingly.
   > 
 ## Installation
 - Python >= 3.10
