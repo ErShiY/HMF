@@ -14,6 +14,7 @@ This repository contains the official implementation of our paper:
 - [Model Architecture](#model-architecture)
 - [Dataset](#dataset)
 - [Installation](#installation)
+- [Project Structure](#Project-Structure)
 - [Usage](#usage)
 - [Results](#results)
 - [Citation](#citation)
@@ -74,10 +75,28 @@ Label Distribution
 
 - pip install -r requirements.txt
 
-## Usage
+## Project Structure
 Download the T5 weights from HuggingFace:
 
 > [FLAN-T5 Small (google/flan-t5-small)](https://huggingface.co/google/flan-t5-small/tree/main)
 
 After downloading, place the following files into:
 /used_checkpoint/T5/
+
+The whole structure are followed
+HMF/
+├── data_splits_stage_folds/ # CAMELYON17: slide-level & patient-level split CSVs
+├── data_splits_tcga_brca_folds/ # TCGA-BRCA: subtype classification fold splits
+├── data_splits_tcga_nsclc_folds/ # TCGA-NSCLC: subtype classification fold splits
+├── text/ # GPT-generated text prompts for each label
+├── used_checkpoint/ # Pretrained model weights and T5 model files
+├── h5_files/ # HDF5 feature files extracted from WSI patches
+├── pt_files/ # Saved PyTorch model checkpoints (.pt)
+│
+├── dataloader.py # Dataset classes and preprocessing logic
+├── main.py # Main training script (supports multiple datasets/tasks)
+├── model.py # Hierarchical multimodal model with BCA and attention
+├── test.py # Model evaluation on test set
+├── train.py # Training pipeline and optimizer/scheduler setup
+├── utils.py # Helper functions (e.g., metrics, I/O, seed setting)
+
