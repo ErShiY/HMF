@@ -34,3 +34,35 @@ In this work, we propose a **Multi-modal Hierarchical (MH)** framework that:
 
 ## Model Architecture
 ![Model Architexture](./assets/MM-MIL.png)
+
+## Dataset
+We evaluate our method on three publicly available datasets:
+### 1.[CAMELYON17](https://camelyon17.grand-challenge.org/)
+- Task: Lymph node metastasis classification
+- Data level: Slide-level & Patient-level
+- Source: Grand Challenge
+
+### 2.[TCGA-BRCA](https://portal.gdc.cancer.gov/)
+- Task: Breast cancer subtyping
+- Subtypes: IDC (Invasive Ductal Carcinoma), ILC (Invasive Lobular Carcinoma)
+
+### 3.[TCGA-NSCLC](https://portal.gdc.cancer.gov/)
+- Task: Non-small cell lung cancer subtyping
+- Subtypes: LUAD (Lung Adenocarcinoma), LUSC (Lung Squamous Cell Carcinoma)
+  
+Label Distribution
+| Dataset       | Level         | Class Label     | Count |
+|---------------|---------------|------------------|-------|
+| **CAMELYON17** | Slide-level   | Negative         | 318   |
+|               |               | ITC              | 36    |
+|               |               | Micro            | 59    |
+|               |               | Macro            | 87    |
+| **CAMELYON17** | Patient-level | pN0              | 120   |
+|               |               | pN0(i+)          | 55    |
+|               |               | pN1mi            | 105   |
+|               |               | pN1              | 150   |
+|               |               | pN2              | 70    |
+| **TCGA-BRCA**  | Patient-level | IDC              | 779   |
+|               |               | ILC              | 198   |
+| **TCGA-NSCLC** | Patient-level | LUAD             | 478   |
+|               |               | LUSC             | 478   |
