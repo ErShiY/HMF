@@ -32,4 +32,5 @@ In this work, we propose a **Multi-modal Hierarchical (MH)** framework that:
 
 ---
 
-## Model Architecture(./assets/MM-MIL.png)
+## Model Architecture
+![Model Architexture](./assets/MM-MIL.png)
