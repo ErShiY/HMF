@@ -1,0 +1,42 @@
+{
+  "pN0": [
+    "Lymph nodes are completely free of cancer, with no sign of metastasis or isolated tumor cells.",
+    "No evidence of cancer in lymph nodes—no micro-metastases, macro-metastases, or isolated tumor cells found.",
+    "Thorough examination shows lymph nodes are negative for any cancer spread, including microscopic or isolated cells.",
+    "Lymph nodes are negative for cancer; no tumor cells detected under microscopic analysis.",
+    "No metastatic involvement in lymph nodes; tissue appears entirely cancer-free.",
+    "Cancer has not spread to the lymph nodes; all tested nodes are clear of disease."
+  ],
+  "pN0(i+)": [
+    "Only isolated tumor cells (ITCs) found in lymph nodes, without evidence of true metastasis.",
+    "Minimal cancer presence: lymph nodes contain only scattered isolated tumor cells.",
+    "Lymph nodes contain ITCs, but no micro- or macro-metastases are present.",
+    "Trace amounts of cancer identified as isolated tumor cells; no larger spread detected.",
+    "Microscopic isolated tumor cells detected, but no further metastatic development.",
+    "Only very small clusters of tumor cells seen—classified as ITCs, not metastatic spread."
+  ],
+  "pN1mi": [
+    "Lymph nodes contain micro-metastases, measuring between 0.2 and 2 mm in size.",
+    "Cancer has reached lymph nodes at a microscopic level, but no large metastases are found.",
+    "Evidence of early lymph node spread with micro-metastases present; no significant node involvement.",
+    "Microscopic tumor clusters (0.2–2 mm) found in lymph nodes, without broader spread.",
+    "Cancer has minimally spread to lymph nodes in the form of micro-metastases only.",
+    "Detected micro-metastatic deposits in lymph nodes; larger cancer spread is absent."
+  ],
+  "pN1": [
+    "Cancer has spread to 1–3 lymph nodes, indicating early regional involvement.",
+    "Moderate lymphatic spread with 1–3 nodes affected by metastatic cancer.",
+    "Evidence of regional metastasis: cancer present in up to 3 lymph nodes.",
+    "Limited spread to lymph nodes, affecting between 1 and 3 nodes.",
+    "Cancer involvement in a few lymph nodes (1–3), indicating a moderate stage.",
+    "Initial stage of nodal spread with up to three lymph nodes showing cancer."
+  ],
+  "pN2": [
+    "Cancer has extended to 4–9 lymph nodes, representing significant disease progression.",
+    "Widespread nodal involvement: 4–9 lymph nodes contain metastatic cancer.",
+    "Advanced regional spread detected, with 4–9 affected lymph nodes.",
+    "Substantial cancer presence in lymph nodes, involving up to nine nodes.",
+    "Multiple lymph nodes (4–9) show metastatic cancer, indicating advanced nodal disease.",
+    "Significant lymphatic spread observed; cancer found in several (4–9) nodes."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "IDC": [
+    "The most common type of breast cancer, originating in the milk ducts and invading surrounding tissues.",
+    "Cancer cells have spread from the breast ducts into adjacent breast tissue, indicating invasive ductal carcinoma.",
+    "A diagnosis of IDC signifies tumor infiltration beyond the ductal lining into the breast parenchyma.",
+    "Invasive ductal carcinoma shows ductal origin with histological signs of tissue invasion.",
+    "This breast tumor has broken through the duct wall, spreading into surrounding areas—hallmark of IDC.",
+    "IDC is characterized by irregular, infiltrative growth patterns emerging from ductal structures.",
+    "Breast biopsy reveals ductal cancer cells extending into surrounding stroma, consistent with IDC."
+  ],
+  "ILC": [
+    "A breast cancer subtype that begins in the lobules and infiltrates surrounding tissue in a linear pattern.",
+    "ILC involves small, uniform tumor cells invading breast tissue in single-file strands.",
+    "Lobular origin cancer spreading beyond lobular units into adjacent stroma, characteristic of ILC.",
+    "This invasive cancer grows diffusely, often making ILC harder to detect in imaging.",
+    "ILC tends to have less cohesive cells, infiltrating tissues subtly and diffusely.",
+    "Histology confirms classic single-file infiltration—indicative of invasive lobular carcinoma.",
+    "Breast tumor shows lobular structure disruption with non-cohesive cell spread, typical of ILC."
+  ],
+  "LUAD": [
+    "A common subtype of non-small cell lung cancer arising from glandular cells of the lung.",
+    "Lung adenocarcinoma originates in peripheral lung tissue and often shows gland-like structures.",
+    "Tumor exhibits mucin production and glandular differentiation, consistent with LUAD.",
+    "LUAD typically arises in non-smokers and presents in outer regions of the lung.",
+    "Histological analysis shows glandular features with lepidic or acinar patterns, diagnostic of LUAD.",
+    "Lung cancer subtype marked by columnar cells forming acinar or papillary structures.",
+    "LUAD is often identified by TTF-1 positivity and mucin-secreting cells in histopathology."
+  ],
+  "LUSC": [
+    "A subtype of non-small cell lung cancer derived from squamous epithelial cells lining the airways.",
+    "LUSC features keratinization and intercellular bridges under histological examination.",
+    "Cancer originates in central bronchi and shows squamous differentiation, typical of LUSC.",
+    "Tumor demonstrates squamous morphology, with keratin pearls and dense cytoplasm.",
+    "LUSC is commonly linked to smoking and tends to develop in the central lung regions.",
+    "Histology reveals squamous cell nests with evidence of keratin production, diagnostic of LUSC.",
+    "Squamous cell carcinoma of the lung shows high-grade cellular atypia and strong p40 expression."
+  ]
+}
