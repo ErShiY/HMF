@@ -79,7 +79,7 @@ To extract features from WSIs, we follow the pipeline proposed by the [CLAM fram
   - Extracted features are saved as `.pt` files
   - Saved under the folder: `./pt_files/`
     
-  > If you want to reproduce feature extraction, please refer to CLAM’s [create_patches_fp.py](https://github.com/mahmoodlab/CLAM/blob/master/create_patches_fp.py) [extract features](https://github.com/mahmoodlab/CLAM/blob/master/extract_features_fp.py) and modify the config CSVs accordingly.
+  > If you want to reproduce feature extraction, please refer to CLAM’s [create_patches_fp.py](https://github.com/mahmoodlab/CLAM/blob/master/create_patches_fp.py) [extract features_fp.py](https://github.com/mahmoodlab/CLAM/blob/master/extract_features_fp.py) and modify the config CSVs accordingly.
   > 
 ## Installation
 - Python >= 3.10
@@ -140,7 +140,7 @@ Evaluate a trained model using saved checkpoint:
 python test.py --checkpoint used_checkpoint/model_epochX.pth
 ```
 The extra Arguments:
-### ⚙️ Arguments
+### Arguments
 
 | Argument               | Description                                       | Example                                  |
 |------------------------|---------------------------------------------------|------------------------------------------|
