@@ -4,7 +4,9 @@ This repository contains the official implementation of our paper:
 
 **Hierarchical Multimodal Fusion of Whole Slide Images and Text for Patient-Level Cancer Staging**
 
-> We propose a novel hierarchical framework that integrates whole slide images (WSIs) and GPT-generated textual prompts using Bi-Cross Attention for robust patient-level classification.
+We propose a novel hierarchical framework that integrates whole slide images (WSIs) and GPT-generated textual prompts using Bi-Cross Attention for robust patient-level classification.
+> If you need access to processed datasets or pretrained weights, feel free to contact me at [1074734511@qq.com](mailto:1074734511@qq.com).
+
 
 ---
 
