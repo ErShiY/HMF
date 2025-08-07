@@ -68,6 +68,19 @@ Label Distribution
 | **TCGA-NSCLC** | Patient-level | LUAD             | 478   |
 |               |               | LUSC             | 478   |
 
+To extract features from WSIs, we follow the pipeline proposed by the [CLAM framework (Mahmood Lab)](https://github.com/mahmoodlab/CLAM/tree/master?tab=readme-ov-file#wsi-segmentation-and-patching), which includes tissue segmentation, patching, and feature extraction using ResNet.
+- **CAMELYON17**
+  - We use `CLAM/presets/bwh_biopsy.csv` as configuration
+  - Extracted features are saved as `.h5` files
+  - Saved under the folder: `./h5_files/`
+
+- **TCGA (BRCA & NSCLC)**
+  - We use `CLAM/presets/tcga.csv` as configuration
+  - Extracted features are saved as `.pt` files
+  - Saved under the folder: `./pt_files/`
+    
+  > If you want to reproduce feature extraction, please refer to CLAM’s [wsi_feature_extraction.py](https://github.com/mahmoodlab/CLAM/blob/master/patch_extraction/wsi_feature_extraction.py) and modify the config CSVs accordingly.
+  > 
 ## Installation
 - Python >= 3.10
 - PyTorch >= 2.3.0 (with CUDA 11.8 support)
