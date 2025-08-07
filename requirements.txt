@@ -1,0 +1,8 @@
+timm==0.9.8
+transformers==4.41.2
+h5py
+pandas
+scikit-learn
+scipy
+nltk
+rouge_score
