@@ -66,3 +66,18 @@ Label Distribution
 |               |               | ILC              | 198   |
 | **TCGA-NSCLC** | Patient-level | LUAD             | 478   |
 |               |               | LUSC             | 478   |
+
+## Installation
+- Python >= 3.10
+- PyTorch >= 2.3.0 (with CUDA 11.8 support)
+- Torchvision == 0.18.0+cu118
+
+- pip install -r requirements.txt
+
+## Usage
+Download the T5 weights from HuggingFace:
+
+> [FLAN-T5 Small (google/flan-t5-small)](https://huggingface.co/google/flan-t5-small/tree/main)
+
+After downloading, place the following files into:
+/used_checkpoint/T5/
