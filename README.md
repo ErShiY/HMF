@@ -98,5 +98,32 @@ The whole structure are followed:
 - `model.py`: HMF model architecture with Bi-Cross Attention
 - `train.py`: Training loop, scheduler, optimizer
 - `test.py`: Test script for model evaluation
-- `utils.py`: Utility functions and helpers
+- `utils.py`: Utility functions
+
+## Usage
+### CAMELYON17
+If you're using **Windows (single GPU)**:
+```bash
+python main.py --task_target 'camelyon' --h5_path 'your_h5_directory'
+```
+
+If you're using multi-GPU setup (e.g., 2 GPUs):
+```bash
+torchrun --nproc_per_node=2 main.py --task_target 'camelyon' --h5_path 'your_h5_directory'
+```
+
+### TCGA Subtyping(BRCA/NSCLC)
+BRCA:
+```bash
+python main.py --task_target 'tcga' --subtyping_task 'brca' --h5_path 'your_h5_directory'
+```
+NSCLC:
+```bash
+python main.py --task_target 'tcga' --subtyping_task 'nsclc' --h5_path 'your_h5_directory'
+```
+### Evaluate/Test
+Evaluate a trained model using saved checkpoint:
+```bash
+python test.py --checkpoint used_checkpoint/model_epochX.pth
+```
 
