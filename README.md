@@ -14,7 +14,7 @@ This repository contains the official implementation of our paper:
 - [Model Architecture](#model-architecture)
 - [Dataset](#dataset)
 - [Installation](#installation)
-- [Project Structure](#Project-Structure)
+- [Project Structure](#project-structure)
 - [Usage](#usage)
 - [Results](#results)
 - [Citation](#citation)
@@ -83,20 +83,20 @@ Download the T5 weights from HuggingFace:
 After downloading, place the following files into:
 /used_checkpoint/T5/
 
-The whole structure are followed
-HMF/
-├── data_splits_stage_folds/ # CAMELYON17: slide-level & patient-level split CSVs
-├── data_splits_tcga_brca_folds/ # TCGA-BRCA: subtype classification fold splits
-├── data_splits_tcga_nsclc_folds/ # TCGA-NSCLC: subtype classification fold splits
-├── text/ # GPT-generated text prompts for each label
-├── used_checkpoint/ # Pretrained model weights and T5 model files
-├── h5_files/ # HDF5 feature files extracted from WSI patches
-├── pt_files/ # Saved PyTorch model checkpoints (.pt)
-│
-├── dataloader.py # Dataset classes and preprocessing logic
-├── main.py # Main training script (supports multiple datasets/tasks)
-├── model.py # Hierarchical multimodal model with BCA and attention
-├── test.py # Model evaluation on test set
-├── train.py # Training pipeline and optimizer/scheduler setup
-├── utils.py # Helper functions (e.g., metrics, I/O, seed setting)
+The whole structure are followed:
+- `data_splits_stage_folds/`: CAMELYON17 slide & patient-level CSVs
+- `data_splits_tcga_brca_folds/`: TCGA-BRCA subtype classification folds
+- `data_splits_tcga_nsclc_folds/`: TCGA-NSCLC subtype classification folds
+- `text/`: GPT-generated textual descriptions per class
+- `used_checkpoint/`: Pretrained weights and downloaded T5 model files
+- `h5_files/`: Extracted HDF5 features from WSIs
+- `pt_files/`: Saved `.pt` model checkpoints
+
+**Core Scripts**
+- `dataloader.py`: Data loading and transformation
+- `main.py`: Entry point for training and evaluation
+- `model.py`: HMF model architecture with Bi-Cross Attention
+- `train.py`: Training loop, scheduler, optimizer
+- `test.py`: Test script for model evaluation
+- `utils.py`: Utility functions and helpers
 
