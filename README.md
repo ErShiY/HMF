@@ -169,7 +169,7 @@ If you find this repository useful for your research, please cite:
 }
 
 MIT License
-
+```
 Copyright (c) 2025 Junxiang Yao
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
