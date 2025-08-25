@@ -168,7 +168,7 @@ If you find this repository useful for your research, please cite:
   note    = {Under Major Revision}
 }
 ```
-MIT License
+## License
 
 Copyright (c) 2025 Junxiang Yao
 
