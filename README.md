@@ -37,7 +37,7 @@ In this work, we propose a **Multi-modal Hierarchical (MH)** framework that:
 
 ## Model Architecture
 ![Model Architexture_1](./assets/MM-MIL.png)
-![Model Architexture_2](./assets/slide_patient_prediction.png)
+![Model Architexture_2](./assets/slide-patient-prediction.png)
 
 ## Dataset
 We evaluate our method on three publicly available datasets:
