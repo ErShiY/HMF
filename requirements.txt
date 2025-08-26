@@ -6,3 +6,5 @@ scikit-learn
 scipy
 nltk
 rouge_score
+sentencepiece
+protobuf
