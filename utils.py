@@ -74,8 +74,7 @@ class Attention_Gated(nn.Module):
         self.ratio = ratio
         self.checkpoint_path = checkpoint_path
 
-        # 只在初始化时加载模型
-        if not hasattr(self, 'model_getscores'):  # 检查模型是否已经加载
+        if not hasattr(self, 'model_getscores'):
             self.model_getscores = Get_scores(dropout=0.25, embed_dim=1024)
             ckpt = torch.load(self.checkpoint_path)
             ckpt_clean = {}
@@ -94,7 +93,6 @@ class Attention_Gated(nn.Module):
             scores = torch.transpose(scores, 1, 0)
             scores = F.softmax(scores, dim=1)
 
-            # inst_eval, k mean useful n mean useless
             k = int(length * self.ratio)
 
             top_p_ids = torch.topk(scores, k=k)[1][-1]
@@ -114,14 +112,11 @@ class T5TextEncoder(nn.Module):
         def tokens_already_added(tokenizer, new_tokens):
             return all(tok in tokenizer.get_vocab() for tok in new_tokens)
 
-        # 检查模型是否已加载
         if not hasattr(self, 'model') or not hasattr(self, 'tokenizer'):
-            # 只在初始化时加载模型
             self.tokenizer = T5Tokenizer.from_pretrained(model_dir, legacy=False)
             self.model = T5EncoderModel.from_pretrained(model_dir)
             task_model_dir = f"./t5_model_{task.replace('-', '_')}/"
 
-            # 扩展 tokenizer 的词汇
             # cancer-stage
             if task == 'cancer-stage':
                 new_tokens = [
@@ -149,20 +144,19 @@ class T5TextEncoder(nn.Module):
                 self.tokenizer.save_pretrained(task_model_dir, legacy=False)
 
     def encode(self, text: list[str]):
-        # Tokenize and prepare input IDs
         inputs = self.tokenizer(text, return_tensors="pt", padding=True, truncation=True)
         inputs = {k: v.cuda() for k, v in inputs.items()}
 
         outputs = self.model(input_ids=inputs["input_ids"], attention_mask=inputs["attention_mask"])
-        last_hidden = outputs.last_hidden_state  # [B, T, 512]
+        last_hidden = outputs.last_hidden_state
 
-        mask = inputs["attention_mask"].unsqueeze(-1)  # [B, T, 1]
-        masked_hidden = last_hidden * mask  # [B, T, 512]
-        sum_hidden = masked_hidden.sum(dim=1)  # [B, 512]
-        lengths = mask.sum(dim=1)  # [B, 1]
-        mean_pooled = sum_hidden / lengths  # [B, 512]
+        mask = inputs["attention_mask"].unsqueeze(-1)
+        masked_hidden = last_hidden * mask
+        sum_hidden = masked_hidden.sum(dim=1)
+        lengths = mask.sum(dim=1)
+        mean_pooled = sum_hidden / lengths
 
-        return mean_pooled  # shape: (5, 512)
+        return mean_pooled
 
 
 def text_descriptions_stage(label, text_data, task='camelyon', num_neg=12):
@@ -204,7 +198,6 @@ class BiCrossAttention(nn.Module):
         self.mha_text2img = MultiheadAttention(embed_dim, num_heads, dropout=dropout_rate, batch_first=True)
         self.mha_img2text = MultiheadAttention(embed_dim, num_heads, dropout=dropout_rate, batch_first=True)
 
-        # LayerNorm 或其他后处理
         self.norm_text = nn.LayerNorm(embed_dim)
         self.norm_img = nn.LayerNorm(embed_dim)
 
@@ -221,7 +214,6 @@ class BiCrossAttention(nn.Module):
         img_embeds = self.pro_layer_img(img_dataset)  # (2345,512)
         text_embeds = self.pro_layer_text(text_dataset)  # (6,512)
 
-        # 1) 文本->图像 注意力
         #    Query=text_embeds, Key=img_embeds, Value=img_embeds
         #    out_text: (B, M, d)
         out_text, attn_weights_text2img = self.mha_text2img(
@@ -229,10 +221,8 @@ class BiCrossAttention(nn.Module):
             key=img_embeds,
             value=img_embeds
         )
-        # 残差 + LayerNorm
         out_text = self.norm_text(out_text + text_embeds)
 
-        # 2) 图像->文本 注意力
         #    Query=img_embeds, Key=out_text, Value=out_text
         #    out_img: (B, K, d)
         out_img, attn_weights_img2text = self.mha_img2text(
@@ -242,7 +232,6 @@ class BiCrossAttention(nn.Module):
         )
         out_img = self.norm_img(out_img + img_embeds)
 
-        # 5) 打包注意力信息
         attn_info = {
             "text2img": attn_weights_text2img,  # (B, M, K)
             "img2text": attn_weights_img2text,  # (B, K, M)
@@ -264,25 +253,25 @@ class ContrastiveLoss(nn.Module):
         global_text:  [N_pseudo, 512] [6,512]
         positive_mask: FloatTensor [B] → 1 for positive, 0 for negative
         """
-        img_feat = global_img.mean(dim=0, keepdim=True)  # [1, 512]
+        img_feat = global_img.mean(dim=0, keepdim=True)
         total = global_text.size(0)
 
         positive_mask = torch.zeros(total, device=img_feat.device)
         positive_mask[:num_positive] = 1.0
 
-        img_feat = F.normalize(self.img_proj(img_feat), dim=-1)  # [1, 512]
-        text_feat = F.normalize(self.txt_proj(global_text), dim=-1)  # [6, 512]
+        img_feat = F.normalize(self.img_proj(img_feat), dim=-1)
+        text_feat = F.normalize(self.txt_proj(global_text), dim=-1)
 
         # image contrastive loss
-        sim = torch.matmul(img_feat, text_feat.T) / self.temperature  # [1, 6]
-        soft_label = positive_mask / (positive_mask.sum() + 1e-6)  # [6]
-        soft_label = soft_label.unsqueeze(0)  # [1, 6]
-        log_probs = F.log_softmax(sim, dim=1)  # [1, 6]
+        sim = torch.matmul(img_feat, text_feat.T) / self.temperature
+        soft_label = positive_mask / (positive_mask.sum() + 1e-6)
+        soft_label = soft_label.unsqueeze(0)
+        log_probs = F.log_softmax(sim, dim=1)
         loss_img = F.kl_div(log_probs, soft_label, reduction="batchmean")
 
         # text contrastive loss
-        img_feat2text = img_feat.squeeze(0)  # [512]
-        sim_text = torch.matmul(text_feat, img_feat2text.unsqueeze(-1)).squeeze(-1) / self.temperature  # [6]
+        img_feat2text = img_feat.squeeze(0)
+        sim_text = torch.matmul(text_feat, img_feat2text.unsqueeze(-1)).squeeze(-1) / self.temperature
         labels_text = torch.zeros(total, device=sim_text.device)
         labels_text[:num_positive] = 1.0
         loss_text = F.binary_cross_entropy_with_logits(sim_text, labels_text)
@@ -298,7 +287,6 @@ class MultiHeadAttention(nn.Module):
         self.n_head = n_head
         self.d_k = d_model // n_head
 
-        # 定义投影矩阵
         self.W_q = nn.Linear(d_model, d_model)
         self.W_k = nn.Linear(d_model, d_model)
         self.W_v = nn.Linear(d_model, d_model)
@@ -320,15 +308,12 @@ class MultiHeadAttention(nn.Module):
         attn = F.softmax(scores, dim=-1)
         attn = self.dropout(attn)
 
-        # 上下文聚合
         context = torch.matmul(attn, V)  # [batch, n_head, d_k]
 
-        # 合并多头
         context = context.transpose(1, 2).contiguous().view(batch_size, -1)
 
-        # 最终投影
         output = self.W_o(context)
-        importance_scores = attn.sum(dim=1).mean(dim=-1)  # 可以通过累加每个头的注意力得分来获取重要性得分
+        importance_scores = attn.sum(dim=1).mean(dim=-1)
 
         return output, importance_scores
 
@@ -505,12 +490,10 @@ def setup_logger(log_file="logs/train.log", logger_name="train_logger"):
 
     formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
 
-    # 文件输出
     file_handler = logging.FileHandler(log_file, mode='a')
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 
-    # 控制台输出
     stream_handler = logging.StreamHandler()
     stream_handler.setFormatter(formatter)
     logger.addHandler(stream_handler)
@@ -544,4 +527,5 @@ class EarlyStopping:
     def save_checkpoint(self, model):
         torch.save(model.state_dict(), self.save_path)
         print(f"💾 New best model saved with score: {self.best_score:.4f} at {self.save_path}")
+
 
