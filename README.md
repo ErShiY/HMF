@@ -155,6 +155,37 @@ The extra Arguments:
 | `--pt_path`            | Path to `.pt` feature files                       | `--pt_path ./pt_files/`                   |
 | `--accumulation_steps` | Gradient accumulation steps to reduce GPU usage   | `--accumulation_steps 5`                 |
 
+## Results
+
+Slide-level classification on CAMELYON17 (4 classes: negative, ITC, micro, macro).
+
+| Model          | Accuracy       | Precision      | Recall         | F1             |
+|----------------|----------------|----------------|----------------|----------------|
+| Mean-pooling   | 0.603 ± 0.083  | 0.353 ± 0.015  | 0.352 ± 0.021  | 0.332 ± 0.016  |
+| Max-pooling    | 0.736 ± 0.071  | 0.513 ± 0.028  | 0.527 ± 0.029  | 0.506 ± 0.028  |
+| GATMIL         | 0.560 ± 0.083  | 0.140 ± 0.021  | 0.135 ± 0.097  | 0.179 ± 0.016  |
+| DSMIL          | 0.637 ± 0.089  | 0.527 ± 0.018  | 0.391 ± 0.021  | 0.392 ± 0.016  |
+| Trans-MIL      | 0.683 ± 0.089  | 0.462 ± 0.068  | 0.474 ± 0.124  | 0.441 ± 0.086  |
+| DTFD (MaxS)    | 0.591 ± 0.083  | 0.319 ± 0.014  | 0.314 ± 0.021  | 0.297 ± 0.016  |
+| DTFD (MaxMinS) | 0.633 ± 0.083  | 0.419 ± 0.022  | 0.372 ± 0.021  | 0.380 ± 0.016  |
+| DTFD (AFS)     | 0.620 ± 0.083  | 0.397 ± 0.011  | 0.368 ± 0.021  | 0.366 ± 0.016  |
+| ACMIL          | 0.773 ± 0.084  | 0.601 ± 0.041  | 0.621 ± 0.114  | 0.615 ± 0.060  |
+| **Ours**       | **0.840 ± 0.072** | **0.725 ± 0.194** | **0.694 ± 0.109** | **0.687 ± 0.132** |
+
+Aggregated patient-level classification on CAMELYON17 (5 classes: pN0, pN0(i+), pN1mi, pN1, pN2).
+
+| Method            | Accuracy       | Precision      | Recall         | F1-score       |
+|-------------------|----------------|----------------|----------------|----------------|
+| Mean-pooling      | 0.600 ± 0.084  | 0.306 ± 0.088  | 0.388 ± 0.083  | 0.347 ± 0.063  |
+| Max-pooling       | 0.560 ± 0.018  | 0.304 ± 0.073  | 0.433 ± 0.076  | 0.360 ± 0.078  |
+| Sum-pooling       | 0.575 ± 0.085  | 0.341 ± 0.035  | 0.453 ± 0.018  | 0.347 ± 0.016  |
+| Min-pooling       | 0.467 ± 0.047  | 0.227 ± 0.044  | 0.372 ± 0.096  | 0.278 ± 0.067  |
+| Attention-pooling | 0.552 ± 0.056  | 0.314 ± 0.047  | 0.345 ± 0.051  | 0.297 ± 0.079  |
+| **Ours (bias term)** | **0.633 ± 0.058** | **0.345 ± 0.096** | **0.456 ± 0.082** | **0.371 ± 0.062** |
+
+###Visualization
+![Model Architexture_3](./assets/compare.png)
+
 
 ## Citation
 
