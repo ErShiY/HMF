@@ -183,7 +183,7 @@ Aggregated patient-level classification on CAMELYON17 (5 classes: pN0, pN0(i+), 
 | Attention-pooling | 0.552 ± 0.056  | 0.314 ± 0.047  | 0.345 ± 0.051  | 0.297 ± 0.079  |
 | **Ours (bias term)** | **0.633 ± 0.058** | **0.345 ± 0.096** | **0.456 ± 0.082** | **0.371 ± 0.062** |
 
-##Visualization
+## Visualization
 ![Model Architexture_3](./assets/compare.png)
 
 
